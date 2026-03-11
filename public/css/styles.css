@@ -57,7 +57,7 @@ nav ul{
   margin:10px 0;
   display:flex;
   justify-content: space-between;
-  background:#333;
+  background:#222;
 }
 
 nav li{
@@ -65,7 +65,7 @@ nav li{
 }
 
 nav a{
-  color:white;
+  color:#ffffff;
   text-decoration:none;
   font-weight:bold;
 } 
@@ -99,7 +99,7 @@ nav a{
 }
 
 .hero-overlay h2{
-  color:#00a9c5;
+  color:#005f73;
 }
 
 .hero-overlay ul{
@@ -141,7 +141,7 @@ nav a{
   gap:15px;
 }
 .upgrade-card{
-   background:#00a9c5;
+  background:#007c91;
   text-align:center;
   padding:10px;
 }
@@ -183,28 +183,26 @@ footer{
   top:20%;
   left:20%;
   transform:translateX(-50%);
-
-  text-align:center;}
+  text-align:center;
+}
 
 .hero-car{
-  margin-top:20px;}
+  margin-top:20px;
+}
 
-
-.content{
-  flex-direction:column;}
-
-nav ul{
-  flex-wrap:wrap;}
 .content{
   flex-direction:row;
-  gap:40px;}
+  gap:40px;
+}
 
 .reviews{
   order:2;
-  flex:1;}
+  flex:1;
+}
 
 .upgrades{
   order:1;
-  flex:1;}
+  flex:1;
+}
 
 }
