@@ -3,6 +3,9 @@ const utilities = require("../utilities/")
 
 const invCont = {}
 
+// =============================
+// BY CLASSIFICATION
+// =============================
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
 
@@ -20,13 +23,20 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
+
+// =============================
+// VEHICLE DETAIL (AQUÍ ESTABA EL ERROR)
+// =============================
 invCont.buildByInventoryId = async function (req, res, next) {
   const inv_id = req.params.invId
-  const data = await invModel.getInventoryById(inv_id)
+
+  const vehicle = await invModel.getInventoryById(inv_id)
+
+  if (!vehicle) {
+    return next({ status: 404, message: "Vehicle not found" })
+  }
 
   const nav = await utilities.getNav()
-  const vehicle = data
-
   const detail = await utilities.buildDetailView(vehicle)
 
   res.render("inventory/detail", {
@@ -34,6 +44,13 @@ invCont.buildByInventoryId = async function (req, res, next) {
     nav,
     detail
   })
+}
+
+// =============================
+// ERROR 500 (TASK 3)
+// =============================
+invCont.triggerError = async function (req, res, next) {
+  throw new Error("Intentional 500 error")
 }
 
 module.exports = invCont

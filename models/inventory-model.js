@@ -3,12 +3,7 @@ const pool = require("../database/")
 async function getClassifications(){
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
-module.exports = { 
-  getClassifications, 
-  getInventoryByClassificationId,
-  getInventoryById
 
-}
 async function getInventoryByClassificationId(classification_id) {
   try {
     const data = await pool.query(
@@ -35,4 +30,10 @@ async function getInventoryById(inv_id) {
   } catch (error) {
     console.error("getInventoryById error " + error)
   }
+}
+module.exports = { 
+  getClassifications, 
+  getInventoryByClassificationId,
+  getInventoryById
+
 }

@@ -57,21 +57,43 @@ Util.buildClassificationGrid = async function(data){
 
 Util.buildDetailView = async function(vehicle){
   let html = `
-  <div class="vehicle-detail">
-    <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}">
-    
-    <div class="vehicle-info">
-      <h2>${vehicle.inv_make} ${vehicle.inv_model} (${vehicle.inv_year})</h2>
-      
-      <p><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
-      
-      <p><strong>Mileage:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</p>
-      
-      <p><strong>Description:</strong> ${vehicle.inv_description}</p>
-      
-      <p><strong>Color:</strong> ${vehicle.inv_color}</p>
+  <section class="vehicle-detail">
+
+    <div class="vehicle-image">
+      <img 
+        src="${vehicle.inv_image}" 
+        alt="Image of ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}" 
+      >
     </div>
-  </div>
+
+    <div class="vehicle-info">
+      <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
+
+      <p class="price">
+        <strong>Price:</strong> 
+        ${new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD'
+        }).format(vehicle.inv_price)}
+      </p>
+
+      <p>
+        <strong>Mileage:</strong> 
+        ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles
+      </p>
+
+      <p>
+        <strong>Color:</strong> 
+        ${vehicle.inv_color}
+      </p>
+
+      <p class="description">
+        <strong>Description:</strong><br>
+        ${vehicle.inv_description}
+      </p>
+    </div>
+
+  </section>
   `
   return html
 }
