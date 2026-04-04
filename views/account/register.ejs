@@ -1,0 +1,41 @@
+<h1><%= title %></h1>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="login-container">
+  <form action="/account/register" method="post" class="login-form">
+
+    <label for="firstname">First Name:</label>
+    <input type="text" name="account_firstname" id="firstname" required value="<%= locals.account_firstname %>">
+
+    <label for="lastname">Last Name:</label>
+    <input type="text" name="account_lastname" id="lastname" required value="<%= locals.account_lastname %>">
+
+    <label for="email">Email:</label>
+    <input type="email" name="account_email" id="email" required placeholder="Enter a valid email" value="<%= locals.account_email %>">
+
+    <label for="password">Password:</label>
+
+    <div class="password-info">
+      Password must be at least 12 characters, include 1 uppercase letter,
+      1 number, and 1 special character.
+    </div>
+
+    <input 
+      type="password" 
+      name="account_password" 
+      id="password" 
+      required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+    >
+
+    <button type="submit">Register</button>
+  </form>
+</div>

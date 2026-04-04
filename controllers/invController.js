@@ -46,6 +46,17 @@ invCont.buildByInventoryId = async function (req, res, next) {
   })
 }
 
+
+async function buildManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    errors: null,
+  })
+}
+
+module.exports = { buildManagement }
 // =============================
 // ERROR 500 (TASK 3)
 // =============================
