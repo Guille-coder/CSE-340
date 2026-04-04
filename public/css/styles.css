@@ -414,9 +414,101 @@ input:required:valid {
   background-color: #e6ffe6;
 }
 
-/* Texto de ayuda password */
 .password-info {
   font-size: 0.8rem;
   color: #555;
   margin-bottom: 0.5rem;
+}
+
+
+
+/* =========================
+   FORM CONTAINER
+========================= */
+form {
+  background: white;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+button {
+  width: 100%;
+  padding: 10px;
+  transition: 0.3s;
+  margin-top: 15px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+.notice {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* SUCCESS */
+.notice {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* ERROR */
+ul.notice {
+  background-color: #f8d7da;
+  color: #721c24;
+  list-style: none;
+  padding: 10px;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #28a745;
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #444;
+  }
 }

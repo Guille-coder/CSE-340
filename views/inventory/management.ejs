@@ -1,8 +1,12 @@
 <h1><%= title %></h1>
 
-<%- messages() %>
+<% if (messages.notice) { %>
+  <p class="notice"><%= messages.notice %></p>
+<% } %>
+
+<p>Use the links below to manage inventory.</p>
 
 <ul>
-  <li><a href="/inv/add-classification">Add Classification</a></li>
-  <li><a href="/inv/add-inventory">Add Inventory</a></li>
+  <li><a href="/inv/add-classification">Add New Classification</a></li>
+  <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
 </ul>
