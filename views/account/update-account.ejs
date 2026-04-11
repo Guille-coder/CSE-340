@@ -1,0 +1,29 @@
+<form action="/account/update" method="post">
+
+  <label>First Name</label>
+  <input type="text" name="account_firstname" value="<%= account_firstname %>" required>
+
+  <label>Last Name</label>
+  <input type="text" name="account_lastname" value="<%= account_lastname %>" required>
+
+  <label>Email</label>
+  <input type="email" name="account_email" value="<%= account_email %>" required>
+
+  <input type="hidden" name="account_id" value="<%= account_id %>">
+
+  <button type="submit">Update Account</button>
+
+</form>
+
+<form action="/account/update-password" method="post">
+
+  <label>New Password</label>
+  <input type="password" name="account_password" required>
+
+  <p>Password must be strong (8+, uppercase, number, special)</p>
+
+  <input type="hidden" name="account_id" value="<%= account_id %>">
+
+  <button type="submit">Change Password</button>
+
+</form>

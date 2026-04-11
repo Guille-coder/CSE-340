@@ -1,6 +1,7 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
-
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 Util.getNav = async function () {
   let data = await invModel.getClassifications()
   let list = "<ul>"
@@ -53,6 +54,25 @@ Util.buildClassificationGrid = async function(data){
     grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
+}
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      (err, data) => {
+        if (err) {
+          res.clearCookie("jwt")
+          return res.redirect("/account/login")
+        }
+        res.locals.loggedin = true
+        res.locals.accountData = data
+        next()
+      }
+    )
+  } else {
+    next()
+  }
 }
 
 Util.buildDetailView = async function(vehicle){
@@ -123,4 +143,28 @@ Util.buildClassificationList = async function (classification_id = null) {
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => 
   Promise.resolve(fn(req, res, next)).catch(next)
+
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
+
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    const type = res.locals.accountData.account_type
+
+    if (type === "Employee" || type === "Admin") {
+      return next()
+    }
+  }
+
+  req.flash("notice", "Please log in as Employee or Admin.")
+  return res.redirect("/account/login")
+}
+
 module.exports = Util
+

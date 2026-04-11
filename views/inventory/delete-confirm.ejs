@@ -1,0 +1,23 @@
+<h1><%= title %></h1>
+
+<p>Confirm Deletion - This action cannot be undone.</p>
+
+<form action="/inv/delete" method="post">
+
+  <label>Make</label>
+  <input type="text" value="<%= inv_make %>" readonly>
+
+  <label>Model</label>
+  <input type="text" value="<%= inv_model %>" readonly>
+
+  <label>Year</label>
+  <input type="text" value="<%= inv_year %>" readonly>
+
+  <label>Price</label>
+  <input type="text" value="<%= inv_price %>" readonly>
+
+  <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+  <button type="submit">Delete</button>
+
+</form>

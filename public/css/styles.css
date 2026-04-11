@@ -502,7 +502,7 @@ input:focus, textarea:focus, select:focus {
 
 @media (max-width: 600px) {
   nav ul {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
 
@@ -511,4 +511,67 @@ input:focus, textarea:focus, select:focus {
     text-align: center;
     border-bottom: 1px solid #444;
   }
+}
+/* ===== INVENTORY TABLE STYLE ===== */
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+#inventoryDisplay thead {
+  background-color: #222;
+  color: #fff;
+}
+
+#inventoryDisplay th {
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+#inventoryDisplay td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover */
+#inventoryDisplay tbody tr:hover {
+  background-color: #e6f0ff;
+  transition: 0.2s;
+}
+
+
+#inventoryDisplay a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+  display: inline-block;
+}
+
+#inventoryDisplay a[href*="edit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+#inventoryDisplay a[href*="edit"]:hover {
+  background-color: #0056b3;
+}
+
+#inventoryDisplay a[href*="delete"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+#inventoryDisplay a[href*="delete"]:hover {
+  background-color: #a71d2a;
 }

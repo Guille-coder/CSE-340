@@ -57,6 +57,24 @@ validate.checkInventoryData = async (req, res, next) => {
   }
   next()
 }
+validate.checkUpdateData = async (req, res, next) => {
+  let errors = validationResult(req)
+  const { inv_id } = req.body
 
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    let classificationList = await utilities.buildClassificationList(req.body.classification_id)
+
+    return res.render("inventory/edit-inventory", {
+      title: "Edit Inventory",
+      nav,
+      classificationList,
+      errors,
+      inv_id,
+      ...req.body
+    })
+  }
+  next()
+}
 
 module.exports = validate

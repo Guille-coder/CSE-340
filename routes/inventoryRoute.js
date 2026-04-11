@@ -7,6 +7,8 @@ const invValidate = require("../utilities/inv-validation")
 
 router.get(
   "/",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
   utilities.handleErrors(invController.buildManagement)
 )
 // Route to build inventory by classification view
@@ -47,4 +49,38 @@ router.get(
   "/error",
   utilities.handleErrors(invController.triggerError)
 )
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+)
+// Route to build edit inventory view
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
+)
+// Handle update request
+
+router.post(
+  "/update",
+  invValidate.inventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+)
+
+// ==============================
+// DELETE VIEW 
+// ==============================
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.buildDeleteView)
+)
+
+// ==============================
+// DELETE PROCESS
+// ==============================
+router.post(
+  "/delete",
+  utilities.handleErrors(invController.deleteInventory)
+)
+
 module.exports = router;
