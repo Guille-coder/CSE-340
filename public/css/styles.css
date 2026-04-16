@@ -575,3 +575,37 @@ input:focus, textarea:focus, select:focus {
 #inventoryDisplay a[href*="delete"]:hover {
   background-color: #a71d2a;
 }
+/* Contenedor opcional */
+.favorite-form {
+  margin-top: 10px;
+}
+
+/* Botón */
+.favorite-btn {
+  display: inline-block;
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.favorite-btn:hover {
+  background: #ffb700;
+  transform: scale(1.05);
+}
+
+/* Click */
+.favorite-btn:active {
+  transform: scale(0.95);
+}
+@media (max-width: 600px) {
+  .favorite-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

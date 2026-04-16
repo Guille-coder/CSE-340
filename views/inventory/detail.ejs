@@ -7,5 +7,9 @@
   <div class="detail-content">
     <%- detail %>
   </div>
+ <form action="/inv/favorite/add" method="POST" class="favorite-form">
+  <input type="hidden" name="inv_id" value="<%= inv_id %>">
+  <button type="submit" class="favorite-btn">⭐ Add to Favorites</button>
+</form>
 
 </section>

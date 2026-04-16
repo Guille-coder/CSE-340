@@ -83,4 +83,13 @@ router.post(
   utilities.handleErrors(invController.deleteInventory)
 )
 
+// ADD
+router.post("/favorite/add", utilities.checkLogin, invController.addFavorite)
+
+// VIEW
+router.get("/favorites", utilities.checkLogin, invController.viewFavorites)
+
+// REMOVE
+router.post("/favorite/remove", utilities.checkLogin, invController.removeFavorite)
+
 module.exports = router;

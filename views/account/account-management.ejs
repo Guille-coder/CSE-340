@@ -1,12 +1,18 @@
 <h2>Welcome <%= accountData.account_firstname %></h2>
+
 <% if (messages.notice) { %>
   <div class="notice">
     <%= messages.notice %>
   </div>
 <% } %>
+
 <a href="/account/update/<%= accountData.account_id %>">
   Update Account Information
 </a>
+
+<br><br>
+
+<a href="/inv/favorites">⭐ My Favorites</a>
 
 <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
 

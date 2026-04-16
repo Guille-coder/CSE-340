@@ -136,6 +136,58 @@ async function deleteInventoryItem(inv_id) {
   }
 }
 
+// =============================
+// ADD FAVORITE
+// =============================
+async function addFavorite(account_id, inv_id) {
+  try {
+    const sql = `
+      INSERT INTO favorites (account_id, inv_id)
+      VALUES ($1, $2)
+      ON CONFLICT DO NOTHING
+      RETURNING *
+    `
+    const data = await pool.query(sql, [account_id, inv_id])
+    return data.rows[0]
+  } catch (error) {
+    console.error("addFavorite error:", error)
+  }
+}
+
+// =============================
+// GET FAVORITES
+// =============================
+async function getFavoritesByAccount(account_id) {
+  try {
+    const sql = `
+      SELECT i.*
+      FROM favorites f
+      JOIN inventory i ON f.inv_id = i.inv_id
+      WHERE f.account_id = $1
+    `
+    const data = await pool.query(sql, [account_id])
+    return data.rows
+  } catch (error) {
+    console.error("getFavorites error:", error)
+  }
+}
+
+// =============================
+// REMOVE FAVORITE
+// =============================
+async function removeFavorite(account_id, inv_id) {
+  try {
+    const sql = `
+      DELETE FROM favorites
+      WHERE account_id = $1 AND inv_id = $2
+    `
+    const data = await pool.query(sql, [account_id, inv_id])
+    return data.rowCount
+  } catch (error) {
+    console.error("removeFavorite error:", error)
+  }
+}
+
 module.exports = { 
   getClassifications, 
   getInventoryByClassificationId,
@@ -143,6 +195,9 @@ module.exports = {
   addClassification,
   addInventory,
   updateInventory,
-  deleteInventoryItem
+  deleteInventoryItem,
+  addFavorite,
+  getFavoritesByAccount,
+  removeFavorite
 
 }
